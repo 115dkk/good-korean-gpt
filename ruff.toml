@@ -1,0 +1,6 @@
+# Python 3.14를 권장하지만 훅은 3.10 이상이면 돈다(TemporaryDirectory의 ignore_cleanup_errors가 3.10부터 있다).
+target-version = "py310"
+line-length = 130
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]

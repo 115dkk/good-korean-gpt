@@ -1,0 +1,45 @@
+{
+  "description": "Korean rules for Codex: the rules go into every session, and GPT 6.1 Sol (effort medium) judges the Korean in file edits, shell commands, MCP tool arguments and the final reply. A breach denies the tool call or makes Codex rewrite the reply.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/korean_gate.py\" session",
+            "commandWindows": "py -3 \"${PLUGIN_ROOT}/hooks/korean_gate.py\" session",
+            "timeout": 30,
+            "additionalContextLimit": 0
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^(apply_patch|Bash)$|^mcp__",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/korean_gate.py\" tool",
+            "commandWindows": "py -3 \"${PLUGIN_ROOT}/hooks/korean_gate.py\" tool",
+            "timeout": 660,
+            "statusMessage": "Korean check (GPT 6.1 Sol)"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/korean_gate.py\" reply",
+            "commandWindows": "py -3 \"${PLUGIN_ROOT}/hooks/korean_gate.py\" reply",
+            "timeout": 660,
+            "statusMessage": "Korean reply check (GPT 6.1 Sol)"
+          }
+        ]
+      }
+    ]
+  }
+}

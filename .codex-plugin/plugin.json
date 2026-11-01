@@ -1,0 +1,31 @@
+{
+  "name": "good-korean-gpt",
+  "version": "1.0.1",
+  "description": "Korean rules for Codex. The rules go into every session, and GPT 6.1 Sol (effort medium) judges the Korean in file edits, shell commands, MCP tool arguments and the final reply; a breach denies the tool call or makes Codex rewrite the reply.",
+  "homepage": "https://github.com/115dkk/good-korean-gpt#readme",
+  "repository": "https://github.com/115dkk/good-korean-gpt",
+  "author": {
+    "name": "115dkk",
+    "url": "https://github.com/115dkk"
+  },
+  "license": "MIT",
+  "keywords": [
+    "korean",
+    "writing",
+    "translationese",
+    "hooks",
+    "codex-plugin"
+  ],
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "good-korean-gpt",
+    "developerName": "115dkk",
+    "shortDescription": "Hooks that keep translationese out of Codex's Korean",
+    "longDescription": "The Korean rules go into every Codex session. Before a file edit, a shell command or an MCP tool call that carries Korean, GPT 6.1 Sol (effort medium) checks that Korean against the rules and denies the call on a clear breach, naming the expression, the rule and a fix. The final reply is checked the same way, and Codex has to rewrite it until it passes. Judging runs through your own codex CLI on your Codex plan.",
+    "category": "Productivity",
+    "capabilities": [
+      "Hooks",
+      "Context Injection"
+    ]
+  }
+}
